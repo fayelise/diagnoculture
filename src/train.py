@@ -47,7 +47,8 @@ def _try_resume(exp_dir: Path, model, opt, sched, scaler, device):
     model.load_state_dict(ck["model"])
     opt.load_state_dict(ck["opt"])
     sched.load_state_dict(ck["sched"])
-    scaler.load_state_dict(ck["scaler"])
+    if ck["scaler"]:   # vide si sauvegardé sans précision mixte (exécution CPU) : rien à restaurer
+        scaler.load_state_dict(ck["scaler"])
     torch.set_rng_state(ck["rng_torch"])
     np.random.set_state(ck["rng_np"])
     print(f"Reprise depuis l'epoch {ck['epoch']} (temps déjà écoulé : {ck['train_time'] / 60:.1f} min)")
