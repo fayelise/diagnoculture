@@ -265,6 +265,9 @@ def update_summary(results_dir: Path, row: dict) -> pd.DataFrame:
     if isinstance(row["hparams"], dict):
         row["hparams"] = json.dumps(row["hparams"], default=str)
     df = df[df["experiment"] != row["experiment"]]
-    df = pd.concat([df, pd.DataFrame([row])], ignore_index=True)
+    # Les colonnes vides de la nouvelle ligne sont retirées avant la concaténation (sinon
+    # FutureWarning de pandas 2.x) ; reindex rétablit ensuite toutes les colonnes, dans l'ordre.
+    new = pd.DataFrame([row]).dropna(axis=1, how="all")
+    df = (new if df.empty else pd.concat([df, new], ignore_index=True)).reindex(columns=SUMMARY_COLUMNS)
     df.to_csv(path, index=False)
     return df
