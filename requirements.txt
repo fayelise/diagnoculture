@@ -1,0 +1,25 @@
+# DiagnoCulture — dépendances figées (Python >= 3.12)
+# Versions avec lesquelles le pipeline complet a été exécuté de bout en bout.
+# Sur Kaggle / Colab, torch, torchvision, numpy, pandas, scikit-learn, matplotlib...
+# sont préinstallés : les notebooks n'installent que les paquets manquants
+# (cellule « Configuration ») et enregistrent les versions réellement utilisées
+# dans results/env_versions.json (à citer dans le rapport).
+torch==2.14.1
+torchvision==0.29.1
+torchinfo==1.8.0
+numpy==2.5.3
+scipy==1.18.1
+pandas==3.0.5
+scikit-learn==1.9.1
+scikit-image==0.26.0
+matplotlib==3.11.2
+seaborn==0.13.2
+Pillow==12.3.0
+PyYAML==6.0.3
+ImageHash==4.3.2
+grad-cam==1.5.7
+onnx==1.23.2
+onnxruntime==1.29.0
+umap-learn==0.5.12
+kagglehub==1.0.2
+gradio==6.30.0

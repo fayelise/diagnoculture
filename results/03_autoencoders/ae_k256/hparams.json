@@ -1,0 +1,10 @@
+{
+  "latent_dim": 256,
+  "noise_std": 0.0,
+  "epochs": 30,
+  "lr": 0.001,
+  "batch_size": 64,
+  "img_size": 64,
+  "loss": "MSE",
+  "train_data": "saines uniquement"
+}

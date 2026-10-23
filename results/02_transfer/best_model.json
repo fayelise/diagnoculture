@@ -1,0 +1,7 @@
+{
+  "backbone": "resnet50",
+  "strategy": "full",
+  "exp_dir": "02_transfer/resnet50_full",
+  "val_f1": 0.9946736846211388,
+  "img_size": 224
+}

@@ -1,0 +1,12 @@
+{
+  "backbone": "mobilenet_v3_large",
+  "strategy": "full",
+  "lr_head": 0.001,
+  "backbone_lr": 0.0001,
+  "epochs": 6,
+  "batch_size": 64,
+  "weight_decay": 0.0001,
+  "img_size": 224,
+  "trainable_params": 4214842,
+  "optimizer": "AdamW+cosine"
+}

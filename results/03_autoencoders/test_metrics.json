@@ -1,0 +1,7 @@
+{
+  "model": "ae_k16_denoise",
+  "auroc": 0.6370700866261885,
+  "recall_anomalies": 0.18214716525934863,
+  "false_alarm_rate": 0.03765690376569038,
+  "threshold": 0.014587224461138248
+}

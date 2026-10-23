@@ -1,0 +1,24 @@
+# Données (non versionnées : trop volumineuses, licence du jeu d'origine)
+data/*
+data/cache/
+!data/.gitkeep
+!data/ood/
+data/ood/*
+!data/ood/custom/
+data/ood/custom/*
+!data/ood/custom/.gitkeep
+
+# Poids des modèles : trop lourds pour Git (les garder sur Drive/Kaggle ou via Git LFS)
+results/**/*.pt
+results/**/*.onnx
+
+# Python / Jupyter
+__pycache__/
+*.pyc
+.ipynb_checkpoints/
+.venv/
+venv/
+
+# Gradio
+flagged/
+.gradio/

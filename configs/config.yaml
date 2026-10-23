@@ -1,0 +1,99 @@
+# =============================================================================
+# DiagnoCulture — configuration centrale
+# Tous les notebooks lisent ce fichier : on ne « code en dur » aucun chemin
+# ni hyperparamètre dans les notebooks, ce qui garantit la reproductibilité.
+# =============================================================================
+
+seed: 42
+
+paths:
+  # "auto" : recherche automatique du dossier PlantVillage
+  #   (data/raw/, /kaggle/input/*, /content/data/...). Sinon, chemin explicite.
+  data_root: auto
+  kaggle_dataset: abdallahalidev/plantvillage-dataset   # téléchargé via kagglehub hors Kaggle
+  ood_custom_dir: data/ood/custom          # >= 30 photos personnelles (non versionnées)
+  results_dir: results
+  cache_dir: data/cache                    # .npy d'images redimensionnées (surchargeable : env. DIAGNO_CACHE)
+
+data:
+  # Dans la version "abdallahalidev/plantvillage-dataset", chaque image existe en
+  # 3 variantes (color / grayscale / segmented). On ne garde que "color" pour
+  # éviter de compter 3 fois la même feuille.
+  keep_variant: color
+  exclude_variants: [grayscale, segmented]
+  num_workers: auto                        # auto = min(4, nb de CPU) ; Colab : 2 CPU, Kaggle : 4
+  subsample_per_class: null                # ex. 1000 pour un sous-échantillonnage justifié ; null = tout
+
+dedup:
+  hash_size: 8                             # pHash 8x8 -> 64 bits
+  hamming_threshold: 6                     # <= 6 bits différents sur 64 : même feuille (calibré dans le nb 00)
+  dihedral: true                           # compare aussi les 8 rotations/flips (variantes augmentées)
+
+split:
+  train: 0.70
+  val: 0.15
+  test: 0.15
+
+resolution:
+  scratch: 128                             # CNN entraînés de zéro
+  transfer: 224                            # transfer learning (160 possible si budget serré)
+  ae: 64                                   # auto-encodeurs / VAE
+
+train:
+  batch_size: 64
+  amp: true                                # précision mixte : ~2x plus rapide sur T4
+  max_minutes: 30                          # garde-fou budget : arrêt propre + checkpoint
+  resume: true                             # reprise automatique depuis last.pt
+
+part1:
+  epochs: 15
+  lr: 1.0e-3
+  weight_decay: 1.0e-4
+  dropout: 0.5
+  channels: [32, 32, 64, 64, 128, 128]     # CNN-Plain (1 valeur par couche conv)
+  res_channels: [32, 64, 128]              # CNN-Res (1 valeur par ResidualBlock = 2 conv)
+  lr_study: [1.0e-2, 1.0e-3, 1.0e-4]
+  lr_study_epochs: 8
+  grad_log_every: 20                       # relevé de la norme du gradient toutes les N itérations
+
+part2:
+  backbones: [mobilenet_v3_small, mobilenet_v3_large, resnet50]
+  strategy_study_backbone: mobilenet_v3_large
+  strategies: [frozen, partial, full]
+  pretrained: true                         # poids ImageNet (téléchargés depuis download.pytorch.org)
+  epochs: 6
+  lr_head: 1.0e-3
+  backbone_lr_factor: 0.1                  # fine-tuning complet : LR backbone = 0.1 x LR tête
+  weight_decay: 1.0e-4
+  latency_runs: 100
+  latency_warmup: 20
+  cpu_threads: 1                           # 1 thread ~ cœur unique d'un smartphone d'entrée de gamme
+
+part3:
+  latent_dims: [16, 64, 256]
+  epochs: 30
+  lr: 1.0e-3
+  noise_std: 0.1                           # variante débruiteuse : bruit gaussien
+  threshold_percentile: 95                 # seuil = percentile 95 des saines de VALIDATION
+
+part4:
+  unknown_class: Tomato_mosaic_virus       # classe M retirée de l'entraînement du classifieur
+  backbone: mobilenet_v3_large
+  strategy: full
+  epochs: 6
+  ae_known_epochs: 25
+  target_false_reject: 0.05                # 5 % de rejet à tort des connues, fixé sur la validation
+  ood_other_species_max: 300               # images d'autres espèces PlantVillage pour le jeu OOD
+  # Système utilisé par la démo, fixé A PRIORI (choisir d'après les résultats du test = sélection sur le test).
+  # msp | ae_healthy | ae_known | or_healthy | z_healthy | or_known | z_known
+  deploy_system: z_known
+
+part5:
+  latent_dim: 32
+  epochs: 30
+  lr: 1.0e-3
+  beta: 1.0
+  tsne_points: 2000
+
+part6:
+  n_errors: 12                             # >= 10 erreurs exigées par l'énoncé

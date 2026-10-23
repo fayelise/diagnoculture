@@ -1,0 +1,4 @@
+format,taille_Mo,latence_cpu_ms,val_acc,val_f1,gain_taille,gain_latence
+ONNX FP32,16.8539,8.3914,0.9945,0.9936,1.0,1.0
+INT8 dynamique — toutes couches,4.4523,95.3905,0.4875,0.2631,3.79,0.09
+INT8 dynamique — couches denses,13.1455,7.7281,0.9941,0.9932,1.28,1.09

@@ -1,0 +1,42 @@
+{
+  "P1_CNN-Plain": {
+    "count": 1,
+    "last": "2026-10-21T21:59:34"
+  },
+  "P1_CNN-Res": {
+    "count": 1,
+    "last": "2026-10-21T22:00:30"
+  },
+  "P2_mobilenet_v3_large_frozen": {
+    "count": 1,
+    "last": "2026-10-21T23:47:38"
+  },
+  "P2_mobilenet_v3_large_partial": {
+    "count": 1,
+    "last": "2026-10-21T23:47:46"
+  },
+  "P2_mobilenet_v3_large_full": {
+    "count": 1,
+    "last": "2026-10-21T23:47:53"
+  },
+  "P2_mobilenet_v3_small_full": {
+    "count": 1,
+    "last": "2026-10-21T23:48:00"
+  },
+  "P2_resnet50_full": {
+    "count": 1,
+    "last": "2026-10-21T23:48:05"
+  },
+  "P3_ae_k16_denoise": {
+    "count": 1,
+    "last": "2026-10-22T10:11:38"
+  },
+  "P4_open_set_systems": {
+    "count": 1,
+    "last": "2026-10-22T12:00:13"
+  },
+  "P5_vae_healthy_neg_elbo": {
+    "count": 1,
+    "last": "2026-10-22T12:51:00"
+  }
+}

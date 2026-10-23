@@ -1,0 +1,11 @@
+class_name,train,val,test,total
+Bacterial_spot,1489,319,319,2127
+Early_blight,700,150,150,1000
+Late_blight,1336,287,286,1909
+Leaf_Mold,666,143,143,952
+Septoria_leaf_spot,1240,265,266,1771
+Spider_mites,1173,251,252,1676
+Target_Spot,983,210,211,1404
+Yellow_Leaf_Curl_Virus,3750,803,804,5357
+Tomato_mosaic_virus,261,56,56,373
+healthy,1114,238,239,1591

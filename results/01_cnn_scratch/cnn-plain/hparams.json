@@ -1,0 +1,11 @@
+{
+  "model": "CNN-Plain",
+  "lr": 0.001,
+  "epochs": 15,
+  "batch_size": 64,
+  "weight_decay": 0.0001,
+  "dropout": 0.5,
+  "img_size": 128,
+  "optimizer": "AdamW+cosine",
+  "augment": "flips, rot15, jitter"
+}
