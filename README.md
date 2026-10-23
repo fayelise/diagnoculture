@@ -43,7 +43,7 @@ Un notebook Kaggle par notebook du projet, enchaînés en « chaîne » : chacun
 
 ### Sur Google Colab (GPU T4) — sans GitHub
 1. Dézipper le projet et déposer le dossier `diagnoculture/` à la racine de **Mon Drive** (→ `MyDrive/diagnoculture/`).
-2. Clé Kaggle : kaggle.com → *Settings → API → Create New Token* (télécharge `kaggle.json`). Dans Colab, icône 🔑 **Secrets** : ajouter `KAGGLE_USERNAME` et `KAGGLE_KEY` (valeurs de `kaggle.json`), activer « Accès au notebook ».
+2. Clé Kaggle : kaggle.com → *Settings → API → Create New Token* (télécharge `kaggle.json`). Dans Colab, icône **Secrets** : ajouter `KAGGLE_USERNAME` et `KAGGLE_KEY` (valeurs de `kaggle.json`), activer « Accès au notebook ».
 3. Dans Drive, ouvrir `diagnoculture/notebooks/00_eda_split.ipynb` avec **Google Colaboratory**, puis *Exécution → Modifier le type d'exécution → GPU T4*.
 4. La première cellule monte le Drive, télécharge PlantVillage sur le disque local de Colab (~2 Go, 1–2 min par session) et place le cache d'images dans `/content/cache`. Résultats et checkpoints sont écrits dans `MyDrive/diagnoculture/results/` : ils survivent aux déconnexions.
 5. Photos personnelles : les déposer dans `MyDrive/diagnoculture/data/ood/custom/`.
