@@ -86,6 +86,8 @@ Chaque entraînement est plafonné à `train.max_minutes` (30 min) et sauvegarde
 
 **Test rapide du pipeline** (avant de lancer les vrais entraînements) : créer un petit YAML, par ex. `quick.yaml` contenant `part1: {epochs: 1}` etc., puis `export DIAGNO_CONFIG_OVERRIDE=quick.yaml` : il est fusionné par-dessus `configs/config.yaml`.
 
+**Garde-fou GPU** : les notebooks 01 à 05 s'arrêtent dès la cellule de configuration s'il n'y a pas de GPU (sur CPU, le budget `train.max_minutes` couperait les entraînements après quelques epochs). Les notebooks 00 et 06 (sans entraînement) acceptent le CPU (`ALLOW_CPU = True`). Pour le seul test rapide ci-dessus, `export DIAGNO_ALLOW_CPU=1` lève le garde-fou.
+
 ## 4. Règles de rigueur appliquées dans le code
 
 - **Reproductibilité** : `set_seed(42)` (random, NumPy, PyTorch, cuDNN déterministe), DataLoader à générateur fixé, versions figées (`requirements.txt`) et versions réellement utilisées enregistrées dans `results/env_versions.json`.
