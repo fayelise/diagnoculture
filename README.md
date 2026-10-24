@@ -18,29 +18,6 @@ pip install -r requirements.txt
 ```
 Un GPU n'est pas indispensable pour le notebook 00 ni pour la démo Gradio ; il l'est pour les entraînements (01 à 06) dans le budget de temps prévu.
 
-### Sur Kaggle Notebooks (recommandé : GPU T4, 30 h/semaine)
-Prérequis : compte Kaggle **vérifié par téléphone** (obligatoire pour le GPU et Internet).
-
-Un notebook Kaggle par notebook du projet, enchaînés en « chaîne » : chacun reçoit en entrée l'Output du précédent.
-
-1. **Importer** : *Create → New Notebook*, puis *File → Import Notebook → onglet GitHub* : `fayelise/diagnoculture`, choisir `notebooks/00_eda_split.ipynb`. Le nommer `diagnoculture-00`.
-2. **Réglages** (panneau de droite, *Session options*) : *Accelerator* **GPU T4 x2** (inutile pour le 00), *Internet* **On**.
-3. **Données** : *Add Input* → rechercher `plantvillage-dataset` (auteur *abdallahalidev*) → **+**.
-4. **Résultats du notebook précédent** (à partir du 01) : *Add Input → Your Work* → choisir l'Output de `diagnoculture-<n-1>`. Comme chaque notebook recopie tout ce qu'il a reçu, le dernier de la chaîne contient tout (le 04 dispose donc des résultats de 02 et 03).
-5. **Exécuter** : *Save Version → Save & Run All (Commit)*. L'exécution continue même si l'onglet est fermé ; les résultats sont dans l'onglet *Output* de la version.
-
-| Notebook Kaggle | Inputs à ajouter |
-|---|---|
-| diagnoculture-00 | plantvillage-dataset |
-| diagnoculture-01 | plantvillage-dataset + Output de diagnoculture-00 |
-| diagnoculture-02 | plantvillage-dataset + Output de diagnoculture-01 |
-| diagnoculture-03 | plantvillage-dataset + Output de diagnoculture-02 |
-| diagnoculture-04 | plantvillage-dataset + Output de diagnoculture-03 |
-| diagnoculture-05 | plantvillage-dataset + Output de diagnoculture-04 |
-| diagnoculture-06 | plantvillage-dataset + Output de diagnoculture-05 |
-
-**Photos personnelles (≥ 30)** : créer un dataset Kaggle privé (*Create → New Dataset*, ex. `diagnoculture-ood-custom`) et l'ajouter en Input au notebook 04. Puis, dans `configs/config.yaml`, mettre `ood_custom_dir: /kaggle/input/diagnoculture-ood-custom` (commit + push).
-
 ### Sur Google Colab (GPU T4) — sans GitHub
 1. Dézipper le projet et déposer le dossier `diagnoculture/` à la racine de **Mon Drive** (→ `MyDrive/diagnoculture/`).
 2. Clé Kaggle : kaggle.com → *Settings → API → Create New Token* (télécharge `kaggle.json`). Dans Colab, icône **Secrets** : ajouter `KAGGLE_USERNAME` et `KAGGLE_KEY` (valeurs de `kaggle.json`), activer « Accès au notebook ».
@@ -53,7 +30,7 @@ Un notebook Kaggle par notebook du projet, enchaînés en « chaîne » : chacun
 Jeu principal : **PlantVillage**, sous-ensemble tomate (10 classes : 9 maladies + saine).
 Version recommandée : [`abdallahalidev/plantvillage-dataset`](https://www.kaggle.com/datasets/abdallahalidev/plantvillage-dataset) — dossier `color/` (18 160 images tomate). Le code accepte aussi les autres versions Kaggle/Hugging Face (noms de dossiers normalisés automatiquement) ; le nombre exact d'images utilisé est affiché par le notebook 00 et doit être reporté dans le rapport.
 
-**Téléchargement hors Kaggle** — créer un jeton API sur kaggle.com (*Settings → API → Create New Token*), puis :
+**Téléchargement manuel** — créer un jeton API sur kaggle.com (*Settings → API → Create New Token*), puis :
 ```bash
 # Option 1 : kagglehub (utilisé automatiquement par les notebooks si les données sont absentes)
 export KAGGLE_USERNAME=votre_login KAGGLE_KEY=votre_cle      # sur Colab : onglet « Secrets »
@@ -69,18 +46,18 @@ Le dossier est trouvé automatiquement (`paths.data_root: auto`) ; sinon, rensei
 
 `data/` n'est pas versionné (volume, licence du jeu d'origine).
 
-## 3. Ordre d'exécution et temps estimés (GPU T4)
+## 3. Ordre d'exécution
 
-| # | Notebook | Contenu (parties de l'énoncé) | Durée estimée |
-|---|---|---|---|
-| 00 | `00_eda_split.ipynb` | EDA, doublons (pHash), split 70/15/15 par groupe, normalisation — **à exécuter en premier** | 5–10 min (CPU suffit) |
-| 01 | `01_cnn_from_scratch.ipynb` | Partie 1 : CNN-Plain, CNN-Res, étude du learning rate, normes de gradient | 25–35 min |
-| 02 | `02_transfer_learning.ipynb` | Partie 2 : MobileNetV3-S/L, ResNet-50, 3 stratégies, latence, Pareto, ONNX + quantification | 35–45 min |
-| 03 | `03_autoencoders.ipynb` | Partie 3 : AE k ∈ {16, 64, 256}, débruiteur, détection d'anomalies | 15–20 min |
-| 04 | `04_hybrid_open_set.ipynb` | Partie 4 : leave-one-class-out, MSP / AE / hybride, OOD (requiert 02 et 03) | 20–25 min |
-| 05 | `05_generative_extension.ipynb` | Partie 5 (option B) : VAE, latent, interpolations, ELBO vs AE (requiert 03) | 15–20 min |
-| 06 | `06_critical_analysis.ipynb` | Partie 6 : Grad-CAM, analyse d'erreurs, questions guidées (requiert 02) | 5 min |
-| — | `app/app_gradio.py` | Démo : image → maladie ou « inconnu » (requiert 04) | — |
+| # | Notebook | Contenu (parties de l'énoncé) |
+|---|---|---|
+| 00 | `00_eda_split.ipynb` | EDA, doublons (pHash), split 70/15/15 par groupe, normalisation — **à exécuter en premier** |
+| 01 | `01_cnn_from_scratch.ipynb` | Partie 1 : CNN-Plain, CNN-Res, étude du learning rate, normes de gradient |
+| 02 | `02_transfer_learning.ipynb` | Partie 2 : MobileNetV3-S/L, ResNet-50, 3 stratégies, latence, Pareto, ONNX + quantification |
+| 03 | `03_autoencoders.ipynb` | Partie 3 : AE k ∈ {16, 64, 256}, débruiteur, détection d'anomalies |
+| 04 | `04_hybrid_open_set.ipynb` | Partie 4 : leave-one-class-out, MSP / AE / hybride, OOD (requiert 02 et 03) |
+| 05 | `05_generative_extension.ipynb` | Partie 5 (option B) : VAE, latent, interpolations, ELBO vs AE (requiert 03) |
+| 06 | `06_critical_analysis.ipynb` | Partie 6 : Grad-CAM, analyse d'erreurs, attention feuille / fond (requiert 02) |
+| — | `app/app_gradio.py` | Démo : image → maladie ou « inconnu » (requiert 04) |
 
 Chaque entraînement est plafonné à `train.max_minutes` (30 min) et sauvegarde **à chaque epoch** `last.pt` (reprise) et `history.csv`. Si la session est coupée : relancer simplement la même cellule, l'entraînement reprend à l'epoch suivant.
 
@@ -99,7 +76,7 @@ Chaque entraînement est plafonné à `train.max_minutes` (30 min) et sauvegarde
 
 ```bash
 python app/app_gradio.py            # local : http://127.0.0.1:7860
-python app/app_gradio.py --share    # Colab/Kaggle : lien public temporaire
+python app/app_gradio.py --share    # Colab : lien public temporaire
 ```
 L'application charge le système hybride du notebook 04 (classifieur + auto-encodeur + seuils fixés sur la validation) et répond par une maladie ou par **« Inconnu »** avec la raison du rejet. Pour la soutenance : 2–3 images dont une de la classe retirée (*Tomato_mosaic_virus*) et une photo hors-distribution.
 
@@ -126,8 +103,4 @@ diagnoculture/
 └── report/                     # plan du rapport, fiche de contribution, déclaration IA
 ```
 
-Les poids (`*.pt`, `*.onnx`) sont exclus de Git (taille) : les conserver sur Drive / dans l'Output Kaggle, ou utiliser Git LFS pour le modèle final de la démo.
-
-## 7. Usage d'outils d'IA générative
-
-Conformément à l'énoncé, l'usage d'IA générative est déclaré en annexe du rapport (`report/annexe_declaration_ia.md`) : outils, usages, et ce qui a été vérifié.
+Les poids (`*.pt`, `*.onnx`) sont exclus de Git (taille) : les conserver sur Drive, ou utiliser Git LFS pour le modèle final de la démo.
