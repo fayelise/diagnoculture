@@ -46,18 +46,20 @@ Le dossier est trouvé automatiquement (`paths.data_root: auto`) ; sinon, rensei
 
 `data/` n'est pas versionné (volume, licence du jeu d'origine).
 
-## 3. Ordre d'exécution
+## 3. Ordre d'exécution et temps estimés
 
-| # | Notebook | Contenu (parties de l'énoncé) |
-|---|---|---|
-| 00 | `00_eda_split.ipynb` | EDA, doublons (pHash), split 70/15/15 par groupe, normalisation — **à exécuter en premier** |
-| 01 | `01_cnn_from_scratch.ipynb` | Partie 1 : CNN-Plain, CNN-Res, étude du learning rate, normes de gradient |
-| 02 | `02_transfer_learning.ipynb` | Partie 2 : MobileNetV3-S/L, ResNet-50, 3 stratégies, latence, Pareto, ONNX + quantification |
-| 03 | `03_autoencoders.ipynb` | Partie 3 : AE k ∈ {16, 64, 256}, débruiteur, détection d'anomalies |
-| 04 | `04_hybrid_open_set.ipynb` | Partie 4 : leave-one-class-out, MSP / AE / hybride, OOD (requiert 02 et 03) |
-| 05 | `05_generative_extension.ipynb` | Partie 5 (option B) : VAE, latent, interpolations, ELBO vs AE (requiert 03) |
-| 06 | `06_critical_analysis.ipynb` | Partie 6 : Grad-CAM, analyse d'erreurs, attention feuille / fond (requiert 02) |
-| — | `app/app_gradio.py` | Démo : image → maladie ou « inconnu » (requiert 04) |
+Durées sur Colab, GPU T4, pour une exécution complète du notebook (entraînements, évaluations, figures), en plus des 1–2 min de téléchargement des données à chaque nouvelle session.
+
+| # | Notebook | Contenu (parties de l'énoncé) | Durée estimée |
+|---|---|---|---|
+| 00 | `00_eda_split.ipynb` | EDA, doublons (pHash), split 70/15/15 par groupe, normalisation — **à exécuter en premier** | 5–10 min (CPU suffit) |
+| 01 | `01_cnn_from_scratch.ipynb` | Partie 1 : CNN-Plain, CNN-Res, étude du learning rate, normes de gradient | ≈ 25 min |
+| 02 | `02_transfer_learning.ipynb` | Partie 2 : MobileNetV3-S/L, ResNet-50, 3 stratégies, latence, Pareto, ONNX + quantification | ≈ 30 min |
+| 03 | `03_autoencoders.ipynb` | Partie 3 : AE k ∈ {16, 64, 256}, débruiteur, détection d'anomalies | ≈ 5 min |
+| 04 | `04_hybrid_open_set.ipynb` | Partie 4 : leave-one-class-out, MSP / AE / hybride, OOD (requiert 02 et 03) | ≈ 10 min |
+| 05 | `05_generative_extension.ipynb` | Partie 5 (option B) : VAE, latent, interpolations, ELBO vs AE (requiert 03) | ≈ 5 min |
+| 06 | `06_critical_analysis.ipynb` | Partie 6 : Grad-CAM, analyse d'erreurs, attention feuille / fond (requiert 02) | ≈ 5 min |
+| — | `app/app_gradio.py` | Démo : image → maladie ou « inconnu » (requiert 04) | — |
 
 Chaque entraînement est plafonné à `train.max_minutes` (30 min) et sauvegarde **à chaque epoch** `last.pt` (reprise) et `history.csv`. Si la session est coupée : relancer simplement la même cellule, l'entraînement reprend à l'epoch suivant.
 
@@ -100,7 +102,7 @@ diagnoculture/
 │   └── gradcam.py              # Grad-CAM explicite + part d'attention sur la feuille
 ├── app/app_gradio.py           # démo image -> maladie ou « inconnu »
 ├── results/                    # sous-dossiers par partie, summary.csv, test_log.json
-└── report/                     # plan du rapport, fiche de contribution, déclaration IA
+└── report/                     # fiche de contribution, déclaration d'usage de l'IA
 ```
 
 Les poids (`*.pt`, `*.onnx`) sont exclus de Git (taille) : les conserver sur Drive, ou utiliser Git LFS pour le modèle final de la démo.
