@@ -3,5 +3,5 @@
   "latent_dim": 16,
   "denoising": true,
   "exp_dir": "03_autoencoders/ae_k16_denoise",
-  "threshold_p95_val": 0.014587224461138248
+  "threshold_p95_val": 0.014587223529815674
 }

@@ -8,7 +8,7 @@
   "grad-cam": "1.5.7",
   "onnxruntime": "1.29.0",
   "env": "colab",
-  "python": "3.13.15",
+  "python": "3.13.16",
   "cpu": "x86_64",
   "cpu_count": 2,
   "gpu": "Tesla T4"

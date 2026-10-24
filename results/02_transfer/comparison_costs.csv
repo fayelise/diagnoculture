@@ -1,8 +1,8 @@
 modèle,famille,params_M,taille_Mo,val_f1,test_acc,test_f1,latency_cpu_ms,latency_gpu_ms
-mobilenet_v3_large (frozen),transfer,4.2148,17.1161,0.8703,0.9021,0.8832,21.2855,6.1955
-mobilenet_v3_large (partial),transfer,4.2148,17.1161,0.9747,0.9809,0.9774,21.4048,6.0429
-mobilenet_v3_large (full),transfer,4.2148,17.1161,0.9936,0.996,0.9957,21.0809,6.8225
-mobilenet_v3_small (full),transfer,1.5281,6.2866,0.9885,0.9905,0.989,10.1237,5.4093
-resnet50 (full),transfer,23.5285,94.4774,0.9947,0.9982,0.9978,123.6329,7.1818
-CNN-Plain,from scratch,0.3544,1.4349,0.8437,0.8844,0.8481,9.845,0.9317
-CNN-Res,from scratch,0.2995,1.2224,0.764,0.8096,0.7555,25.2675,1.9978
+mobilenet_v3_large (frozen),transfer,4.2148,17.1161,0.8703,0.9021,0.8832,19.6354,6.2841
+mobilenet_v3_large (partial),transfer,4.2148,17.1161,0.9747,0.9809,0.9774,19.2984,6.2294
+mobilenet_v3_large (full),transfer,4.2148,17.1161,0.9936,0.996,0.9957,20.7049,6.1546
+mobilenet_v3_small (full),transfer,1.5281,6.2866,0.9885,0.9905,0.989,9.2228,5.1253
+resnet50 (full),transfer,23.5285,94.4774,0.9947,0.9982,0.9978,112.5649,6.5211
+CNN-Plain,from scratch,0.3544,1.4349,0.9753,0.9824,0.9784,8.9096,1.0829
+CNN-Res,from scratch,0.2995,1.2224,0.9747,0.9813,0.9778,22.2698,1.6919
