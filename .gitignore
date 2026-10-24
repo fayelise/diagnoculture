@@ -22,3 +22,4 @@ venv/
 # Gradio
 flagged/
 .gradio/
+report/plan_rapport.md
