@@ -30,5 +30,13 @@
   "P1_CNN-Res": {
     "count": 1,
     "last": "2026-10-23T22:14:41"
+  },
+  "P4_open_set_systems": {
+    "count": 2,
+    "last": "2026-10-24T07:24:07"
+  },
+  "P5_vae_healthy_neg_elbo": {
+    "count": 2,
+    "last": "2026-10-25T09:04:22"
   }
 }

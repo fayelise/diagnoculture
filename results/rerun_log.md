@@ -32,3 +32,18 @@ Aucun hyperparamètre, seuil ni modèle n'a été choisi d'après les résultats
 Le VAE-sain (P5), entraîné jusqu'au bout (30/30 epochs), est inchangé : sa ré-évaluation sur le test
 est une exécution identique du même modèle, sans aucun choix qui en découle.
 Les parties 00, 02 et 03 (exécutées sur GPU, ou entraînements complets) ne sont pas modifiées.
+
+## 2026-10-24 / 2026-10-25 — Ré-exécution des notebooks 04 et 05
+
+**Jeu hors-distribution (notebook 04).** Le dossier `data/ood/custom/` contenait par erreur 40 images
+PlantVillage de tomate (classes connues, dont 38 issues du découpage train/val/test) au lieu d'images
+hors domaine. Elles ont été remplacées par 31 images (mains, pieds, sol, autres plantes…), puis le
+notebook 04 a été ré-exécuté le 24/10 avec `FORCE_TEST_RERUN = True`, d'où `count: 2` pour
+`P4_open_set_systems` dans `test_log.json`. Mêmes modèles (aucun ré-entraînement) et mêmes règles fixées
+sur la validation : les résultats de la section 5 sont identiques à la première évaluation. Seule
+l'évaluation hors-distribution (section 6) change.
+
+**VAE (notebook 05).** Ré-exécution identique du notebook 05 le 25/10, d'où `count: 2` pour
+`P5_vae_healthy_neg_elbo`. Même modèle, mêmes résultats (AUROC −ELBO = 0,6565).
+
+Aucun hyperparamètre, seuil ni modèle n'a été choisi à partir du jeu de test.

@@ -1,0 +1,45 @@
+{
+  "system": "z_known",
+  "rule": {
+    "kind": "z",
+    "target_false_reject": 0.05,
+    "mu_msp": 0.005657021421939135,
+    "sd_msp": 0.03712582215666771,
+    "mu_ae": 0.006376202683895826,
+    "sd_ae": 0.0038811559788882732,
+    "tau": 1.0510720671976956,
+    "ae": "ae_known"
+  },
+  "known_classes": [
+    "Bacterial_spot",
+    "Early_blight",
+    "Late_blight",
+    "Leaf_Mold",
+    "Septoria_leaf_spot",
+    "Spider_mites",
+    "Target_Spot",
+    "Yellow_Leaf_Curl_Virus",
+    "healthy"
+  ],
+  "unknown_class_held_out": "Tomato_mosaic_virus",
+  "classifier": {
+    "backbone": "mobilenet_v3_large",
+    "ckpt": "04_hybrid/classifier_without_Tomato_mosaic_virus/best.pt",
+    "img_size": 224,
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "autoencoder": {
+    "latent_dim": 16,
+    "img_size": 64,
+    "ckpt": "04_hybrid/ae_known_classes/best.pt"
+  }
+}

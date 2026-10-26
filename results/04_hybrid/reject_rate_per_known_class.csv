@@ -1,0 +1,10 @@
+classe,AE-sain,AE-connues,MSP
+Bacterial_spot,0.0,0.0,0.072
+Early_blight,0.187,0.247,0.187
+Late_blight,0.231,0.203,0.126
+Leaf_Mold,0.042,0.063,0.021
+Septoria_leaf_spot,0.128,0.094,0.026
+Spider_mites,0.0,0.004,0.103
+Target_Spot,0.019,0.118,0.057
+Yellow_Leaf_Curl_Virus,0.016,0.006,0.005
+healthy,0.004,0.05,0.017

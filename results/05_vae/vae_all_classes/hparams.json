@@ -1,0 +1,9 @@
+{
+  "latent_dim": 32,
+  "beta": 1.0,
+  "epochs": 30,
+  "lr": 0.001,
+  "img_size": 64,
+  "train_data": "toutes les classes",
+  "loss": "SSE + beta*KL (-ELBO)"
+}
