@@ -1,0 +1,7 @@
+{
+  "latent_dim": 16,
+  "train_data": "9 classes connues (sans Tomato_mosaic_virus)",
+  "epochs": 25,
+  "lr": 0.001,
+  "img_size": 64
+}

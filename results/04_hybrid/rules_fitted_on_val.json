@@ -1,0 +1,56 @@
+{
+  "msp": {
+    "kind": "msp",
+    "target_false_reject": 0.05,
+    "tau": 0.00944569706916809,
+    "ae": null
+  },
+  "ae_healthy": {
+    "kind": "ae",
+    "target_false_reject": 0.05,
+    "tau": 0.02075771428644657,
+    "ae": "ae_healthy"
+  },
+  "ae_known": {
+    "kind": "ae",
+    "target_false_reject": 0.05,
+    "tau": 0.013650084612891078,
+    "ae": "ae_known"
+  },
+  "or_healthy": {
+    "kind": "or",
+    "target_false_reject": 0.05,
+    "tau_msp": 0.038632526993751526,
+    "tau_ae": 0.024060335010290146,
+    "tau": 1.0,
+    "ae": "ae_healthy"
+  },
+  "z_healthy": {
+    "kind": "z",
+    "target_false_reject": 0.05,
+    "mu_msp": 0.005657021421939135,
+    "sd_msp": 0.03712582215666771,
+    "mu_ae": 0.009984415024518967,
+    "sd_ae": 0.005975351668894291,
+    "tau": 0.9971072371848346,
+    "ae": "ae_healthy"
+  },
+  "or_known": {
+    "kind": "or",
+    "target_false_reject": 0.05,
+    "tau_msp": 0.038632526993751526,
+    "tau_ae": 0.015629196539521217,
+    "tau": 1.0,
+    "ae": "ae_known"
+  },
+  "z_known": {
+    "kind": "z",
+    "target_false_reject": 0.05,
+    "mu_msp": 0.005657021421939135,
+    "sd_msp": 0.03712582215666771,
+    "mu_ae": 0.006376202683895826,
+    "sd_ae": 0.0038811559788882732,
+    "tau": 1.0510720671976956,
+    "ae": "ae_known"
+  }
+}

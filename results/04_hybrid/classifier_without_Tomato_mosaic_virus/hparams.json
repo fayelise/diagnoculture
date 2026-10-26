@@ -1,0 +1,19 @@
+{
+  "backbone": "mobilenet_v3_large",
+  "strategy": "full",
+  "classes": [
+    "Bacterial_spot",
+    "Early_blight",
+    "Late_blight",
+    "Leaf_Mold",
+    "Septoria_leaf_spot",
+    "Spider_mites",
+    "Target_Spot",
+    "Yellow_Leaf_Curl_Virus",
+    "healthy"
+  ],
+  "excluded": "Tomato_mosaic_virus",
+  "epochs": 6,
+  "lr_head": 0.001,
+  "img_size": 224
+}
