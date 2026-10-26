@@ -1,8 +1,0 @@
-jeu OOD,n,système,taux de rejet,AUROC connues(test) vs OOD
-autres espèces PlantVillage,300,msp,0.3767,0.8587
-autres espèces PlantVillage,300,ae_healthy,0.2,0.6602
-autres espèces PlantVillage,300,ae_known,0.1333,0.5847
-autres espèces PlantVillage,300,or_healthy,0.3767,0.7699
-autres espèces PlantVillage,300,z_healthy,0.4633,0.816
-autres espèces PlantVillage,300,or_known,0.3267,0.7243
-autres espèces PlantVillage,300,z_known,0.38,0.7744

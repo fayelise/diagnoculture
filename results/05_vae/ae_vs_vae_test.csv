@@ -1,3 +1,0 @@
-score,auroc,recall_anomalies,false_alarm_rate
-AE (ae_k16_denoise) — erreur MSE,0.6371,0.1821,0.0377
-VAE-sain — −ELBO,0.6565,0.2107,0.0293

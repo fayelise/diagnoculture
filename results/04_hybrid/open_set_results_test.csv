@@ -1,8 +1,0 @@
-système,auroc_known_vs_unknown,reject_rate_unknown,false_reject_rate_known,accuracy_on_accepted_known,coverage_known
-msp,0.7977,0.1555,0.0468,0.9116,0.9532
-ae_healthy,0.3284,0.0027,0.0569,0.8924,0.9431
-ae_known,0.3954,0.0027,0.0633,0.8968,0.9367
-or_healthy,0.4666,0.0992,0.0524,0.9004,0.9476
-z_healthy,0.5571,0.0858,0.0494,0.9054,0.9506
-or_known,0.5095,0.0965,0.0566,0.9023,0.9434
-z_known,0.5932,0.059,0.0476,0.9033,0.9524
